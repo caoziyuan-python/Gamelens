@@ -1,0 +1,37 @@
+# Python编译文件
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 虚拟环境
+.venv/
+venv/
+env/
+
+# 缓存和索引（运行时生成，不需要上传）
+gamelens/cache/
+gamelens/indices/
+gamelens/logs/
+gamelens/models/
+*.log
+
+# pytest缓存
+pytest-cache-files*/
+.pytest_cache/
+*pytest-cache*
+
+# 环境变量（含密钥，不能上传）
+.env
+gamelens/.env
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 临时文件
+*.tmp
+*.bak
+
+# Word文档（用docs/目录下的md代替）
+*.docx
