@@ -42,7 +42,8 @@ def generate_decisions(complaints: List[dict], sentiment_stats: dict, game_name:
         ctype = sanitize_text_for_llm(str(item.get("complaint_type", "Unknown")))
         demand = sanitize_text_for_llm(str(item.get("core_demand", "")))
         ratio = item.get("estimated_ratio", "")
-        summary.append(f"{i}. {ctype} | demand={demand} | ratio={ratio}")
+        quote = sanitize_text_for_llm(str(item.get("typical_quote", "")))
+        summary.append(f'{i}. {ctype} | demand={demand} | ratio={ratio} | 用户原话："{quote}"')
     complaints_summary = "\n".join(summary)
 
     avg_score = float(sentiment_stats.get("avg_score", 0.0)) if sentiment_stats else 0.0
@@ -68,6 +69,7 @@ Return ONLY JSON array:
     "priority": "High|Medium|Low"
   }}
 ]
+每条产品建议必须基于用户原话，建议内容必须具体到该游戏的具体问题，禁止输出对所有游戏都适用的通用建议。
 Replace sensitive words with [SENSITIVE].
 """.strip()
 
